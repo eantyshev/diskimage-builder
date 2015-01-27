@@ -9,11 +9,24 @@ Portal or Satellite to enable software installation from official
 repositories. After the end of the image creation process, the image will
 unregister itself so an entitlement will not be decremented from the account.
 
+
+SECURITY WARNING:
+-----------------
+While the image building workflow will allow you to register with a username
+and password combination, that feature is deprecated in the boot process via
+Heat as it will expose your username and password in clear text for anyone
+that has rights to run heat stack-show.  A compromised username and password
+can be used to login to the Red Hat Customer Portal or an instance of
+Satellite.  An activation key can only be used for registration purposes using
+the subscription-manager command line tool and is considered a lower security
+risk.
+
 IMPORTANT NOTE:
 ----------------
 The 00-rhsm script is specific to RHEL6.  If you use the REG_ variables to
 use with RHEL7, you do not need to set any DIB_RHSM variables.  The scripts
 named with "rhel-registration" have not been developed or tested for RHEL6.
+For information on building RHEL6 images, please see the rhel element README.
 
 Environment Variables For Image Creation
 ----------------------------------------
@@ -59,7 +72,7 @@ the hostname.
 #### REG\_METHOD
 Sets the method of registration.  Use "portal" to register a system with the
 Red Hat Customer Portal.  Use "satellite" to register a system with Red
-Hat Satellite 6.
+Hat Satellite 6.  Use "disable" to skip the registration process.
 
 #### REG\_ORG
 Gives the organization to which to join the system.
@@ -81,8 +94,8 @@ It will change over time as new releases come out.  There are also variants
 
 #### REG\_REPOS
 A single string representing a list of repository names separated by a
-space.  Each of the repositories in this string are enabled through
-subscription manager.  Once you've attached a subscription, you can
+comma (No spaces).  Each of the repositories in this string are enabled
+through subscription manager.  Once you've attached a subscription, you can
 find available repositories by running subscription-manager repos --list.
 
 #### REG\_SERVER\_URL
@@ -119,7 +132,7 @@ REG_METHOD=satellite
 To register with the Red Hat Customer Portal, a common example would be to
 set the following variables:
 
-REG_REPOS='rhel-7-server-optional-rpms rhel-7-server-extras-rpms'
+REG_REPOS='rhel-7-server-optional-rpms,rhel-7-server-extras-rpms'
 REG_AUTO_ATTACH=true
 REG_USER='tripleo'
 REG_PASSWORD='tripleo'
@@ -158,6 +171,7 @@ Heat metadata can be used to configure the rhel-common element.
         org:
             # Gives the organization to which to join the system.
         password:
+            # DEPRECATED
             # Gives the password for the user account.
         release:
             # Sets the operating system minor release to use for subscriptions
@@ -165,8 +179,8 @@ Heat metadata can be used to configure the rhel-common element.
             # minor release version. This is only used with the auto_attach
             # option.
         repos:
-            # A single string representing a list of repository names separated
-            # by a space.  Each of the repositories in this string are enabled
+            # A single string representing a list of repository names separated by a
+            # comma (No spaces).  Each of the repositories in this string are enabled
             # through subscription manager.
         satellite_url:
             # The url of the Satellite instance to register with.  Required for
@@ -180,6 +194,7 @@ Heat metadata can be used to configure the rhel-common element.
             # Sets the service level to use for subscriptions on that machine.
             # This is only used with the auto_attach option.
         user:
+            # DEPRECATED
             # Gives the content server user account name.
         type:
             # Sets what type of consumer is being registered. The default is
@@ -190,7 +205,8 @@ Heat metadata can be used to configure the rhel-common element.
         method:
             # Sets the method of registration.  Use "portal" to register a
             # system with the Red Hat Customer Portal.  Use "satellite" to
-            # register a system with Red Hat Satellite 6.
+            # register a system with Red Hat Satellite 6.  Use "disable" to
+            # skip the registration process.
 
 Configuration Registration Examples
 ------------------------------------
@@ -202,8 +218,7 @@ metadata:
             "satellite_url": "http://my-sat06.server.org",
             "org": "tripleo",
             "environment": "Library",
-            "user":"tripleo",
-            "password":"tripleo",
+            "activation_key": "my-key-SQQkh4",
             "method":"satellite"
             "repos": "rhel-ha-for-rhel-7-server-rpms"
         }
@@ -214,10 +229,10 @@ use the following metadata:
 
     {
         "rh_registration":{
-            "repos":"rhel-7-server-optional-rpms rhel-7-server-extras-rpms",
+            "repos":"rhel-7-server-optional-rpms,rhel-7-server-extras-rpms",
             "auto_attach":true,
-            "user":"tripleo",
-            "password":"tripleo",
+            "activation_key": "my-key-SQQkh4",
+            "org": "5643002",
             "method":"portal"
         }
     }
