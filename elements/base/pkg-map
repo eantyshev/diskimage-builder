@@ -13,5 +13,6 @@
     "dkms_package": "dkms",
     "vlan_package": "vlan",
     "iscsi_package": "open-iscsi"
+    "python-futures_package": "python-futures"
   }
 }

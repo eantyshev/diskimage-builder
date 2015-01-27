@@ -232,7 +232,7 @@ finalise_base
 for X in ${!IMAGE_TYPES[@]} ; do
   if [ "${IMAGE_TYPES[$X]}" == "tar" ]; then
     sudo tar -C ${TMP_BUILD_DIR}/mnt -cf $IMAGE_NAME.tar --exclude ./sys \
-             --exclude ./proc --xattrs --xattrs-include=\* .
+             --exclude ./proc --xattrs --xattrs-include='*' .
     sudo chown $USER: $IMAGE_NAME.tar
     unset IMAGE_TYPES[$X]
   fi

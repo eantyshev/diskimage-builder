@@ -1,0 +1,505 @@
++ true
++ case "$1" in
++ shift
++ export DIB_NO_TMPFS=1
++ DIB_NO_TMPFS=1
++ true
++ case "$1" in
++ export IMAGE_NAME=image1.qcow2
++ IMAGE_NAME=image1.qcow2
++ shift 2
++ true
++ case "$1" in
++ shift
++ break
++ export DIB_IMAGE_CACHE=/root/.cache/image-create
++ DIB_IMAGE_CACHE=/root/.cache/image-create
++ mkdir -p /root/.cache/image-create
++ '[' '' = 1 -a /root '!=' '' ']'
++ source /usr/bin/../share/diskimage-builder/lib/img-defaults
+++ source /usr/bin/../share/diskimage-builder/lib/common-defaults
++++ '[' -f /etc/debian_version ']'
+++++ uname -m
++++ _ARCH=x86_64
++++ case $_ARCH in
++++ _ARCH=amd64
++++ ARCH=amd64
++++ export ARCH
++++ export DIB_NO_TMPFS=1
++++ DIB_NO_TMPFS=1
++++ export DIB_MIN_TMPFS=2
++++ DIB_MIN_TMPFS=2
++++ _BASE_ELEMENT_DIR=/usr/bin/../share/diskimage-builder/elements
++++ ELEMENTS_PATH=
++++ export ELEMENTS_PATH=/usr/bin/../share/diskimage-builder/elements
++++ ELEMENTS_PATH=/usr/bin/../share/diskimage-builder/elements
++++ export DIB_OFFLINE=
++++ DIB_OFFLINE=
++++ [[ :/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin =~ :/sbin ]]
++++ [[ :/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin =~ :/usr/sbin ]]
++++ [[ :/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin =~ :/usr/local/sbin ]]
+++ FS_TYPE=ext4
+++ IMAGE_TYPE=qcow2
+++ IMAGE_NAME=image1.qcow2
++ source /usr/bin/../share/diskimage-builder/lib/common-functions
++ source /usr/bin/../share/diskimage-builder/lib/img-functions
++ '[' 0 == 1 ']'
++ '[' -z rhel ']'
++ arg_to_elements rhel
++ for arg in '"$@"'
++ IMAGE_ELEMENT=' rhel'
++ '[' '' '!=' 1 ']'
++ IMAGE_ELEMENT='base  rhel'
++ '[' 0 == 1 ']'
++ echo 'Building elements: base  rhel'
+Building elements: base  rhel
+++ /usr/bin/element-info --expand-dependencies base rhel
++ IMAGE_ELEMENT='rpm-distro dib-run-parts rhel-common base pkg-map rhel cache-url yum'
++ export IMAGE_ELEMENT
++ echo 'Expanded element dependencies to: rpm-distro dib-run-parts rhel-common base pkg-map rhel cache-url yum'
+Expanded element dependencies to: rpm-distro dib-run-parts rhel-common base pkg-map rhel cache-url yum
++ '[' 1 = 1 ']'
++ export IMAGE_NAME=image1
++ IMAGE_NAME=image1
+++ uuidgen -r
++ export DIB_IMAGE_ROOT_FS_UUID=11d31bc7-5444-4b4e-a05f-05693eae00c0
++ DIB_IMAGE_ROOT_FS_UUID=11d31bc7-5444-4b4e-a05f-05693eae00c0
++ '[' -z '' ']'
++ '[' ext4 = xfs ']'
++ DIB_ROOT_LABEL=cloudimg-rootfs
++ mk_build_dir
+++ mktemp -t -d --tmpdir=/vz/vm-images image.XXXXXXXX
++ TMP_BUILD_DIR=/vz/vm-images/image.8cvG9kEJ
+++ mktemp -t -d --tmpdir=/vz/vm-images image.XXXXXXXX
++ TMP_IMAGE_DIR=/vz/vm-images/image.4iVYYIXo
++ '[' 0 -eq 0 ']'
++ export TMP_BUILD_DIR
++ tmpfs_check
++ '[' 1 == 0 ']'
++ return 1
+++ id -u
+++ id -g
++ sudo chown 0:0 /vz/vm-images/image.8cvG9kEJ /vz/vm-images/image.4iVYYIXo
++ trap trap_cleanup EXIT
++ echo Building in /vz/vm-images/image.8cvG9kEJ
+Building in /vz/vm-images/image.8cvG9kEJ
++ export TMP_IMAGE_PATH=/vz/vm-images/image.4iVYYIXo/image.raw
++ TMP_IMAGE_PATH=/vz/vm-images/image.4iVYYIXo/image.raw
++ export OUT_IMAGE_PATH=/vz/vm-images/image.4iVYYIXo/image.raw
++ OUT_IMAGE_PATH=/vz/vm-images/image.4iVYYIXo/image.raw
++ export TMP_HOOKS_PATH=/vz/vm-images/image.8cvG9kEJ/hooks
++ TMP_HOOKS_PATH=/vz/vm-images/image.8cvG9kEJ/hooks
++ create_base
++ mkdir /vz/vm-images/image.8cvG9kEJ/mnt
++ export TMP_MOUNT_PATH=/vz/vm-images/image.8cvG9kEJ/mnt
++ TMP_MOUNT_PATH=/vz/vm-images/image.8cvG9kEJ/mnt
++ TARGET_ROOT=/vz/vm-images/image.8cvG9kEJ/mnt
++ run_d root
++ check_element
++ '[' -d /vz/vm-images/image.8cvG9kEJ/hooks ']'
++ generate_hooks
++ mkdir -p /vz/vm-images/image.8cvG9kEJ/hooks
++ for _ELEMENT in '$IMAGE_ELEMENT'
++ for dir in '${ELEMENTS_PATH//:/ }'
++ '[' -d /usr/bin/../share/diskimage-builder/elements/rpm-distro ']'
+++ find /usr/bin/../share/diskimage-builder/elements/rpm-distro -mindepth 1 -maxdepth 1 -type d -not -name tests
++ for _DIR in '$(find $dir/$_ELEMENT -mindepth 1 -maxdepth 1 -type d -not -name tests)'
++ copy_hooks_not_overwrite /usr/bin/../share/diskimage-builder/elements/rpm-distro/finalise.d
+++ basename /usr/bin/../share/diskimage-builder/elements/rpm-distro/finalise.d
++ _DIR=finalise.d
++ test -d /vz/vm-images/image.8cvG9kEJ/hooks/finalise.d
++ mkdir /vz/vm-images/image.8cvG9kEJ/hooks/finalise.d
+++ ls /usr/bin/../share/diskimage-builder/elements/rpm-distro/finalise.d
++ for _HOOK in '$(ls $1)'
++ '[' '!' -f /vz/vm-images/image.8cvG9kEJ/hooks/finalise.d/11-selinux-fixfiles-restore ']'
++ cp -t /vz/vm-images/image.8cvG9kEJ/hooks/finalise.d -a /usr/bin/../share/diskimage-builder/elements/rpm-distro/finalise.d/11-selinux-fixfiles-restore
++ for _DIR in '$(find $dir/$_ELEMENT -mindepth 1 -maxdepth 1 -type d -not -name tests)'
++ copy_hooks_not_overwrite /usr/bin/../share/diskimage-builder/elements/rpm-distro/pre-install.d
+++ basename /usr/bin/../share/diskimage-builder/elements/rpm-distro/pre-install.d
++ _DIR=pre-install.d
++ test -d /vz/vm-images/image.8cvG9kEJ/hooks/pre-install.d
++ mkdir /vz/vm-images/image.8cvG9kEJ/hooks/pre-install.d
+++ ls /usr/bin/../share/diskimage-builder/elements/rpm-distro/pre-install.d
++ for _HOOK in '$(ls $1)'
++ '[' '!' -f /vz/vm-images/image.8cvG9kEJ/hooks/pre-install.d/00-allow-heat-admin-sudo ']'
++ cp -t /vz/vm-images/image.8cvG9kEJ/hooks/pre-install.d -a /usr/bin/../share/diskimage-builder/elements/rpm-distro/pre-install.d/00-allow-heat-admin-sudo
++ for _HOOK in '$(ls $1)'
++ '[' '!' -f /vz/vm-images/image.8cvG9kEJ/hooks/pre-install.d/00-allow-root-sudo ']'
++ cp -t /vz/vm-images/image.8cvG9kEJ/hooks/pre-install.d -a /usr/bin/../share/diskimage-builder/elements/rpm-distro/pre-install.d/00-allow-root-sudo
++ for _HOOK in '$(ls $1)'
++ '[' '!' -f /vz/vm-images/image.8cvG9kEJ/hooks/pre-install.d/00-usr-local-bin-secure-path ']'
++ cp -t /vz/vm-images/image.8cvG9kEJ/hooks/pre-install.d -a /usr/bin/../share/diskimage-builder/elements/rpm-distro/pre-install.d/00-usr-local-bin-secure-path
++ for _HOOK in '$(ls $1)'
++ '[' '!' -f /vz/vm-images/image.8cvG9kEJ/hooks/pre-install.d/01-override-yum-arch ']'
++ cp -t /vz/vm-images/image.8cvG9kEJ/hooks/pre-install.d -a /usr/bin/../share/diskimage-builder/elements/rpm-distro/pre-install.d/01-override-yum-arch
++ for _DIR in '$(find $dir/$_ELEMENT -mindepth 1 -maxdepth 1 -type d -not -name tests)'
++ copy_hooks_not_overwrite /usr/bin/../share/diskimage-builder/elements/rpm-distro/post-install.d
+++ basename /usr/bin/../share/diskimage-builder/elements/rpm-distro/post-install.d
++ _DIR=post-install.d
++ test -d /vz/vm-images/image.8cvG9kEJ/hooks/post-install.d
++ mkdir /vz/vm-images/image.8cvG9kEJ/hooks/post-install.d
+++ ls /usr/bin/../share/diskimage-builder/elements/rpm-distro/post-install.d
++ for _HOOK in '$(ls $1)'
++ '[' '!' -f /vz/vm-images/image.8cvG9kEJ/hooks/post-install.d/05-fstab-rootfs-label ']'
++ cp -t /vz/vm-images/image.8cvG9kEJ/hooks/post-install.d -a /usr/bin/../share/diskimage-builder/elements/rpm-distro/post-install.d/05-fstab-rootfs-label
++ for _HOOK in '$(ls $1)'
++ '[' '!' -f /vz/vm-images/image.8cvG9kEJ/hooks/post-install.d/06-network-config-nonzeroconf ']'
++ cp -t /vz/vm-images/image.8cvG9kEJ/hooks/post-install.d -a /usr/bin/../share/diskimage-builder/elements/rpm-distro/post-install.d/06-network-config-nonzeroconf
+++ find /usr/bin/../share/diskimage-builder/elements/rpm-distro -maxdepth 1 -type f
++ break
++ for _ELEMENT in '$IMAGE_ELEMENT'
++ for dir in '${ELEMENTS_PATH//:/ }'
++ '[' -d /usr/bin/../share/diskimage-builder/elements/dib-run-parts ']'
+++ find /usr/bin/../share/diskimage-builder/elements/dib-run-parts -mindepth 1 -maxdepth 1 -type d -not -name tests
++ for _DIR in '$(find $dir/$_ELEMENT -mindepth 1 -maxdepth 1 -type d -not -name tests)'
++ copy_hooks_not_overwrite /usr/bin/../share/diskimage-builder/elements/dib-run-parts/root.d
+++ basename /usr/bin/../share/diskimage-builder/elements/dib-run-parts/root.d
++ _DIR=root.d
++ test -d /vz/vm-images/image.8cvG9kEJ/hooks/root.d
++ mkdir /vz/vm-images/image.8cvG9kEJ/hooks/root.d
+++ ls /usr/bin/../share/diskimage-builder/elements/dib-run-parts/root.d
++ for _HOOK in '$(ls $1)'
++ '[' '!' -f /vz/vm-images/image.8cvG9kEJ/hooks/root.d/90-base-dib-run-parts ']'
++ cp -t /vz/vm-images/image.8cvG9kEJ/hooks/root.d -a /usr/bin/../share/diskimage-builder/elements/dib-run-parts/root.d/90-base-dib-run-parts
+++ find /usr/bin/../share/diskimage-builder/elements/dib-run-parts -maxdepth 1 -type f
++ break
++ for _ELEMENT in '$IMAGE_ELEMENT'
++ for dir in '${ELEMENTS_PATH//:/ }'
++ '[' -d /usr/bin/../share/diskimage-builder/elements/rhel-common ']'
+++ find /usr/bin/../share/diskimage-builder/elements/rhel-common -mindepth 1 -maxdepth 1 -type d -not -name tests
++ for _DIR in '$(find $dir/$_ELEMENT -mindepth 1 -maxdepth 1 -type d -not -name tests)'
++ copy_hooks_not_overwrite /usr/bin/../share/diskimage-builder/elements/rhel-common/os-refresh-config
+++ basename /usr/bin/../share/diskimage-builder/elements/rhel-common/os-refresh-config
++ _DIR=os-refresh-config
++ test -d /vz/vm-images/image.8cvG9kEJ/hooks/os-refresh-config
++ mkdir /vz/vm-images/image.8cvG9kEJ/hooks/os-refresh-config
+++ ls /usr/bin/../share/diskimage-builder/elements/rhel-common/os-refresh-config
++ for _HOOK in '$(ls $1)'
++ '[' '!' -f /vz/vm-images/image.8cvG9kEJ/hooks/os-refresh-config/pre-configure.d ']'
++ cp -t /vz/vm-images/image.8cvG9kEJ/hooks/os-refresh-config -a /usr/bin/../share/diskimage-builder/elements/rhel-common/os-refresh-config/pre-configure.d
++ for _DIR in '$(find $dir/$_ELEMENT -mindepth 1 -maxdepth 1 -type d -not -name tests)'
++ copy_hooks_not_overwrite /usr/bin/../share/diskimage-builder/elements/rhel-common/install.d
+++ basename /usr/bin/../share/diskimage-builder/elements/rhel-common/install.d
++ _DIR=install.d
++ test -d /vz/vm-images/image.8cvG9kEJ/hooks/install.d
++ mkdir /vz/vm-images/image.8cvG9kEJ/hooks/install.d
+++ ls /usr/bin/../share/diskimage-builder/elements/rhel-common/install.d
++ for _HOOK in '$(ls $1)'
++ '[' '!' -f /vz/vm-images/image.8cvG9kEJ/hooks/install.d/10-openstack-selinux-rhel ']'
++ cp -t /vz/vm-images/image.8cvG9kEJ/hooks/install.d -a /usr/bin/../share/diskimage-builder/elements/rhel-common/install.d/10-openstack-selinux-rhel
++ for _DIR in '$(find $dir/$_ELEMENT -mindepth 1 -maxdepth 1 -type d -not -name tests)'
++ copy_hooks_not_overwrite /usr/bin/../share/diskimage-builder/elements/rhel-common/finalise.d
+++ basename /usr/bin/../share/diskimage-builder/elements/rhel-common/finalise.d
++ _DIR=finalise.d
++ test -d /vz/vm-images/image.8cvG9kEJ/hooks/finalise.d
+++ ls /usr/bin/../share/diskimage-builder/elements/rhel-common/finalise.d
++ for _HOOK in '$(ls $1)'
++ '[' '!' -f /vz/vm-images/image.8cvG9kEJ/hooks/finalise.d/99-unregister ']'
++ cp -t /vz/vm-images/image.8cvG9kEJ/hooks/finalise.d -a /usr/bin/../share/diskimage-builder/elements/rhel-common/finalise.d/99-unregister
++ for _DIR in '$(find $dir/$_ELEMENT -mindepth 1 -maxdepth 1 -type d -not -name tests)'
++ copy_hooks_not_overwrite /usr/bin/../share/diskimage-builder/elements/rhel-common/pre-install.d
+++ basename /usr/bin/../share/diskimage-builder/elements/rhel-common/pre-install.d
++ _DIR=pre-install.d
++ test -d /vz/vm-images/image.8cvG9kEJ/hooks/pre-install.d
+++ ls /usr/bin/../share/diskimage-builder/elements/rhel-common/pre-install.d
++ for _HOOK in '$(ls $1)'
++ '[' '!' -f /vz/vm-images/image.8cvG9kEJ/hooks/pre-install.d/00-rhel-registration ']'
++ cp -t /vz/vm-images/image.8cvG9kEJ/hooks/pre-install.d -a /usr/bin/../share/diskimage-builder/elements/rhel-common/pre-install.d/00-rhel-registration
++ for _HOOK in '$(ls $1)'
++ '[' '!' -f /vz/vm-images/image.8cvG9kEJ/hooks/pre-install.d/00-rhsm ']'
++ cp -t /vz/vm-images/image.8cvG9kEJ/hooks/pre-install.d -a /usr/bin/../share/diskimage-builder/elements/rhel-common/pre-install.d/00-rhsm
++ for _HOOK in '$(ls $1)'
++ '[' '!' -f /vz/vm-images/image.8cvG9kEJ/hooks/pre-install.d/10-rhel-blacklist ']'
++ cp -t /vz/vm-images/image.8cvG9kEJ/hooks/pre-install.d -a /usr/bin/../share/diskimage-builder/elements/rhel-common/pre-install.d/10-rhel-blacklist
+++ find /usr/bin/../share/diskimage-builder/elements/rhel-common -maxdepth 1 -type f
++ for _FILE in '$(find $dir/$_ELEMENT -maxdepth 1 -type f)'
++ cp -t /vz/vm-images/image.8cvG9kEJ/hooks -a /usr/bin/../share/diskimage-builder/elements/rhel-common/README.md
++ break
++ for _ELEMENT in '$IMAGE_ELEMENT'
++ for dir in '${ELEMENTS_PATH//:/ }'
++ '[' -d /usr/bin/../share/diskimage-builder/elements/base ']'
+++ find /usr/bin/../share/diskimage-builder/elements/base -mindepth 1 -maxdepth 1 -type d -not -name tests
++ for _DIR in '$(find $dir/$_ELEMENT -mindepth 1 -maxdepth 1 -type d -not -name tests)'
++ copy_hooks_not_overwrite /usr/bin/../share/diskimage-builder/elements/base/environment.d
+++ basename /usr/bin/../share/diskimage-builder/elements/base/environment.d
++ _DIR=environment.d
++ test -d /vz/vm-images/image.8cvG9kEJ/hooks/environment.d
++ mkdir /vz/vm-images/image.8cvG9kEJ/hooks/environment.d
+++ ls /usr/bin/../share/diskimage-builder/elements/base/environment.d
++ for _HOOK in '$(ls $1)'
++ '[' '!' -f /vz/vm-images/image.8cvG9kEJ/hooks/environment.d/10-ccache.bash ']'
++ cp -t /vz/vm-images/image.8cvG9kEJ/hooks/environment.d -a /usr/bin/../share/diskimage-builder/elements/base/environment.d/10-ccache.bash
++ for _HOOK in '$(ls $1)'
++ '[' '!' -f /vz/vm-images/image.8cvG9kEJ/hooks/environment.d/10-dib-init-system.bash ']'
++ cp -t /vz/vm-images/image.8cvG9kEJ/hooks/environment.d -a /usr/bin/../share/diskimage-builder/elements/base/environment.d/10-dib-init-system.bash
++ for _DIR in '$(find $dir/$_ELEMENT -mindepth 1 -maxdepth 1 -type d -not -name tests)'
++ copy_hooks_not_overwrite /usr/bin/../share/diskimage-builder/elements/base/extra-data.d
+++ basename /usr/bin/../share/diskimage-builder/elements/base/extra-data.d
++ _DIR=extra-data.d
++ test -d /vz/vm-images/image.8cvG9kEJ/hooks/extra-data.d
++ mkdir /vz/vm-images/image.8cvG9kEJ/hooks/extra-data.d
+++ ls /usr/bin/../share/diskimage-builder/elements/base/extra-data.d
++ for _HOOK in '$(ls $1)'
++ '[' '!' -f /vz/vm-images/image.8cvG9kEJ/hooks/extra-data.d/50-store-build-settings ']'
++ cp -t /vz/vm-images/image.8cvG9kEJ/hooks/extra-data.d -a /usr/bin/../share/diskimage-builder/elements/base/extra-data.d/50-store-build-settings
++ for _HOOK in '$(ls $1)'
++ '[' '!' -f /vz/vm-images/image.8cvG9kEJ/hooks/extra-data.d/99-enable-install-types ']'
++ cp -t /vz/vm-images/image.8cvG9kEJ/hooks/extra-data.d -a /usr/bin/../share/diskimage-builder/elements/base/extra-data.d/99-enable-install-types
++ for _DIR in '$(find $dir/$_ELEMENT -mindepth 1 -maxdepth 1 -type d -not -name tests)'
++ copy_hooks_not_overwrite /usr/bin/../share/diskimage-builder/elements/base/cleanup.d
+++ basename /usr/bin/../share/diskimage-builder/elements/base/cleanup.d
++ _DIR=cleanup.d
++ test -d /vz/vm-images/image.8cvG9kEJ/hooks/cleanup.d
++ mkdir /vz/vm-images/image.8cvG9kEJ/hooks/cleanup.d
+++ ls /usr/bin/../share/diskimage-builder/elements/base/cleanup.d
++ for _HOOK in '$(ls $1)'
++ '[' '!' -f /vz/vm-images/image.8cvG9kEJ/hooks/cleanup.d/01-ccache ']'
++ cp -t /vz/vm-images/image.8cvG9kEJ/hooks/cleanup.d -a /usr/bin/../share/diskimage-builder/elements/base/cleanup.d/01-ccache
++ for _HOOK in '$(ls $1)'
++ '[' '!' -f /vz/vm-images/image.8cvG9kEJ/hooks/cleanup.d/99-tidy-logs ']'
++ cp -t /vz/vm-images/image.8cvG9kEJ/hooks/cleanup.d -a /usr/bin/../share/diskimage-builder/elements/base/cleanup.d/99-tidy-logs
++ for _DIR in '$(find $dir/$_ELEMENT -mindepth 1 -maxdepth 1 -type d -not -name tests)'
++ copy_hooks_not_overwrite /usr/bin/../share/diskimage-builder/elements/base/install.d
+++ basename /usr/bin/../share/diskimage-builder/elements/base/install.d
++ _DIR=install.d
++ test -d /vz/vm-images/image.8cvG9kEJ/hooks/install.d
+++ ls /usr/bin/../share/diskimage-builder/elements/base/install.d
++ for _HOOK in '$(ls $1)'
++ '[' '!' -f /vz/vm-images/image.8cvG9kEJ/hooks/install.d/00-baseline-environment ']'
++ cp -t /vz/vm-images/image.8cvG9kEJ/hooks/install.d -a /usr/bin/../share/diskimage-builder/elements/base/install.d/00-baseline-environment
++ for _HOOK in '$(ls $1)'
++ '[' '!' -f /vz/vm-images/image.8cvG9kEJ/hooks/install.d/00-ccache ']'
++ cp -t /vz/vm-images/image.8cvG9kEJ/hooks/install.d -a /usr/bin/../share/diskimage-builder/elements/base/install.d/00-ccache
++ for _HOOK in '$(ls $1)'
++ '[' '!' -f /vz/vm-images/image.8cvG9kEJ/hooks/install.d/10-cloud-init ']'
++ cp -t /vz/vm-images/image.8cvG9kEJ/hooks/install.d -a /usr/bin/../share/diskimage-builder/elements/base/install.d/10-cloud-init
++ for _HOOK in '$(ls $1)'
++ '[' '!' -f /vz/vm-images/image.8cvG9kEJ/hooks/install.d/50-store-build-settings ']'
++ cp -t /vz/vm-images/image.8cvG9kEJ/hooks/install.d -a /usr/bin/../share/diskimage-builder/elements/base/install.d/50-store-build-settings
++ for _HOOK in '$(ls $1)'
++ '[' '!' -f /vz/vm-images/image.8cvG9kEJ/hooks/install.d/99-dkms ']'
++ cp -t /vz/vm-images/image.8cvG9kEJ/hooks/install.d -a /usr/bin/../share/diskimage-builder/elements/base/install.d/99-dkms
++ for _HOOK in '$(ls $1)'
++ '[' '!' -f /vz/vm-images/image.8cvG9kEJ/hooks/install.d/99-up-to-date ']'
++ cp -t /vz/vm-images/image.8cvG9kEJ/hooks/install.d -a /usr/bin/../share/diskimage-builder/elements/base/install.d/99-up-to-date
++ for _DIR in '$(find $dir/$_ELEMENT -mindepth 1 -maxdepth 1 -type d -not -name tests)'
++ copy_hooks_not_overwrite /usr/bin/../share/diskimage-builder/elements/base/root.d
+++ basename /usr/bin/../share/diskimage-builder/elements/base/root.d
++ _DIR=root.d
++ test -d /vz/vm-images/image.8cvG9kEJ/hooks/root.d
+++ ls /usr/bin/../share/diskimage-builder/elements/base/root.d
++ for _HOOK in '$(ls $1)'
++ '[' '!' -f /vz/vm-images/image.8cvG9kEJ/hooks/root.d/01-ccache ']'
++ cp -t /vz/vm-images/image.8cvG9kEJ/hooks/root.d -a /usr/bin/../share/diskimage-builder/elements/base/root.d/01-ccache
++ for _DIR in '$(find $dir/$_ELEMENT -mindepth 1 -maxdepth 1 -type d -not -name tests)'
++ copy_hooks_not_overwrite /usr/bin/../share/diskimage-builder/elements/base/pre-install.d
+++ basename /usr/bin/../share/diskimage-builder/elements/base/pre-install.d
++ _DIR=pre-install.d
++ test -d /vz/vm-images/image.8cvG9kEJ/hooks/pre-install.d
+++ ls /usr/bin/../share/diskimage-builder/elements/base/pre-install.d
++ for _HOOK in '$(ls $1)'
++ '[' '!' -f /vz/vm-images/image.8cvG9kEJ/hooks/pre-install.d/03-baseline-tools ']'
++ cp -t /vz/vm-images/image.8cvG9kEJ/hooks/pre-install.d -a /usr/bin/../share/diskimage-builder/elements/base/pre-install.d/03-baseline-tools
++ for _HOOK in '$(ls $1)'
++ '[' '!' -f /vz/vm-images/image.8cvG9kEJ/hooks/pre-install.d/04-dib-init-system ']'
++ cp -t /vz/vm-images/image.8cvG9kEJ/hooks/pre-install.d -a /usr/bin/../share/diskimage-builder/elements/base/pre-install.d/04-dib-init-system
+++ find /usr/bin/../share/diskimage-builder/elements/base -maxdepth 1 -type f
++ for _FILE in '$(find $dir/$_ELEMENT -maxdepth 1 -type f)'
++ cp -t /vz/vm-images/image.8cvG9kEJ/hooks -a /usr/bin/../share/diskimage-builder/elements/base/element-deps
++ for _FILE in '$(find $dir/$_ELEMENT -maxdepth 1 -type f)'
++ cp -t /vz/vm-images/image.8cvG9kEJ/hooks -a /usr/bin/../share/diskimage-builder/elements/base/pkg-map
++ for _FILE in '$(find $dir/$_ELEMENT -maxdepth 1 -type f)'
++ cp -t /vz/vm-images/image.8cvG9kEJ/hooks -a /usr/bin/../share/diskimage-builder/elements/base/README.md
++ for _FILE in '$(find $dir/$_ELEMENT -maxdepth 1 -type f)'
++ cp -t /vz/vm-images/image.8cvG9kEJ/hooks -a /usr/bin/../share/diskimage-builder/elements/base/dib-init-system
++ break
++ for _ELEMENT in '$IMAGE_ELEMENT'
++ for dir in '${ELEMENTS_PATH//:/ }'
++ '[' -d /usr/bin/../share/diskimage-builder/elements/pkg-map ']'
+++ find /usr/bin/../share/diskimage-builder/elements/pkg-map -mindepth 1 -maxdepth 1 -type d -not -name tests
++ for _DIR in '$(find $dir/$_ELEMENT -mindepth 1 -maxdepth 1 -type d -not -name tests)'
++ copy_hooks_not_overwrite /usr/bin/../share/diskimage-builder/elements/pkg-map/extra-data.d
+++ basename /usr/bin/../share/diskimage-builder/elements/pkg-map/extra-data.d
++ _DIR=extra-data.d
++ test -d /vz/vm-images/image.8cvG9kEJ/hooks/extra-data.d
+++ ls /usr/bin/../share/diskimage-builder/elements/pkg-map/extra-data.d
++ for _HOOK in '$(ls $1)'
++ '[' '!' -f /vz/vm-images/image.8cvG9kEJ/hooks/extra-data.d/10-create-pkg-map-dir ']'
++ cp -t /vz/vm-images/image.8cvG9kEJ/hooks/extra-data.d -a /usr/bin/../share/diskimage-builder/elements/pkg-map/extra-data.d/10-create-pkg-map-dir
++ for _DIR in '$(find $dir/$_ELEMENT -mindepth 1 -maxdepth 1 -type d -not -name tests)'
++ copy_hooks_not_overwrite /usr/bin/../share/diskimage-builder/elements/pkg-map/bin
+++ basename /usr/bin/../share/diskimage-builder/elements/pkg-map/bin
++ _DIR=bin
++ test -d /vz/vm-images/image.8cvG9kEJ/hooks/bin
++ mkdir /vz/vm-images/image.8cvG9kEJ/hooks/bin
+++ ls /usr/bin/../share/diskimage-builder/elements/pkg-map/bin
++ for _HOOK in '$(ls $1)'
++ '[' '!' -f /vz/vm-images/image.8cvG9kEJ/hooks/bin/pkg-map ']'
++ cp -t /vz/vm-images/image.8cvG9kEJ/hooks/bin -a /usr/bin/../share/diskimage-builder/elements/pkg-map/bin/pkg-map
+++ find /usr/bin/../share/diskimage-builder/elements/pkg-map -maxdepth 1 -type f
++ for _FILE in '$(find $dir/$_ELEMENT -maxdepth 1 -type f)'
++ cp -t /vz/vm-images/image.8cvG9kEJ/hooks -a /usr/bin/../share/diskimage-builder/elements/pkg-map/README.md
++ break
++ for _ELEMENT in '$IMAGE_ELEMENT'
++ for dir in '${ELEMENTS_PATH//:/ }'
++ '[' -d /usr/bin/../share/diskimage-builder/elements/rhel ']'
+++ find /usr/bin/../share/diskimage-builder/elements/rhel -mindepth 1 -maxdepth 1 -type d -not -name tests
++ for _DIR in '$(find $dir/$_ELEMENT -mindepth 1 -maxdepth 1 -type d -not -name tests)'
++ copy_hooks_not_overwrite /usr/bin/../share/diskimage-builder/elements/rhel/environment.d
+++ basename /usr/bin/../share/diskimage-builder/elements/rhel/environment.d
++ _DIR=environment.d
++ test -d /vz/vm-images/image.8cvG9kEJ/hooks/environment.d
+++ ls /usr/bin/../share/diskimage-builder/elements/rhel/environment.d
++ for _HOOK in '$(ls $1)'
++ '[' '!' -f /vz/vm-images/image.8cvG9kEJ/hooks/environment.d/10-rhel-distro-name.bash ']'
++ cp -t /vz/vm-images/image.8cvG9kEJ/hooks/environment.d -a /usr/bin/../share/diskimage-builder/elements/rhel/environment.d/10-rhel-distro-name.bash
++ for _DIR in '$(find $dir/$_ELEMENT -mindepth 1 -maxdepth 1 -type d -not -name tests)'
++ copy_hooks_not_overwrite /usr/bin/../share/diskimage-builder/elements/rhel/bin
+++ basename /usr/bin/../share/diskimage-builder/elements/rhel/bin
++ _DIR=bin
++ test -d /vz/vm-images/image.8cvG9kEJ/hooks/bin
+++ ls /usr/bin/../share/diskimage-builder/elements/rhel/bin
++ for _HOOK in '$(ls $1)'
++ '[' '!' -f /vz/vm-images/image.8cvG9kEJ/hooks/bin/map-packages ']'
++ cp -t /vz/vm-images/image.8cvG9kEJ/hooks/bin -a /usr/bin/../share/diskimage-builder/elements/rhel/bin/map-packages
++ for _DIR in '$(find $dir/$_ELEMENT -mindepth 1 -maxdepth 1 -type d -not -name tests)'
++ copy_hooks_not_overwrite /usr/bin/../share/diskimage-builder/elements/rhel/root.d
+++ basename /usr/bin/../share/diskimage-builder/elements/rhel/root.d
++ _DIR=root.d
++ test -d /vz/vm-images/image.8cvG9kEJ/hooks/root.d
+++ ls /usr/bin/../share/diskimage-builder/elements/rhel/root.d
++ for _HOOK in '$(ls $1)'
++ '[' '!' -f /vz/vm-images/image.8cvG9kEJ/hooks/root.d/10-rhel-cloud-image ']'
++ cp -t /vz/vm-images/image.8cvG9kEJ/hooks/root.d -a /usr/bin/../share/diskimage-builder/elements/rhel/root.d/10-rhel-cloud-image
++ for _DIR in '$(find $dir/$_ELEMENT -mindepth 1 -maxdepth 1 -type d -not -name tests)'
++ copy_hooks_not_overwrite /usr/bin/../share/diskimage-builder/elements/rhel/finalise.d
+++ basename /usr/bin/../share/diskimage-builder/elements/rhel/finalise.d
++ _DIR=finalise.d
++ test -d /vz/vm-images/image.8cvG9kEJ/hooks/finalise.d
+++ ls /usr/bin/../share/diskimage-builder/elements/rhel/finalise.d
++ for _HOOK in '$(ls $1)'
++ '[' '!' -f /vz/vm-images/image.8cvG9kEJ/hooks/finalise.d/60-rhsm-unregister ']'
++ cp -t /vz/vm-images/image.8cvG9kEJ/hooks/finalise.d -a /usr/bin/../share/diskimage-builder/elements/rhel/finalise.d/60-rhsm-unregister
+++ find /usr/bin/../share/diskimage-builder/elements/rhel -maxdepth 1 -type f
++ for _FILE in '$(find $dir/$_ELEMENT -maxdepth 1 -type f)'
++ cp -t /vz/vm-images/image.8cvG9kEJ/hooks -a /usr/bin/../share/diskimage-builder/elements/rhel/element-deps
++ for _FILE in '$(find $dir/$_ELEMENT -maxdepth 1 -type f)'
++ cp -t /vz/vm-images/image.8cvG9kEJ/hooks -a /usr/bin/../share/diskimage-builder/elements/rhel/README.md
++ for _FILE in '$(find $dir/$_ELEMENT -maxdepth 1 -type f)'
++ cp -t /vz/vm-images/image.8cvG9kEJ/hooks -a /usr/bin/../share/diskimage-builder/elements/rhel/element-provides
++ break
++ for _ELEMENT in '$IMAGE_ELEMENT'
++ for dir in '${ELEMENTS_PATH//:/ }'
++ '[' -d /usr/bin/../share/diskimage-builder/elements/cache-url ']'
+++ find /usr/bin/../share/diskimage-builder/elements/cache-url -mindepth 1 -maxdepth 1 -type d -not -name tests
++ for _DIR in '$(find $dir/$_ELEMENT -mindepth 1 -maxdepth 1 -type d -not -name tests)'
++ copy_hooks_not_overwrite /usr/bin/../share/diskimage-builder/elements/cache-url/bin
+++ basename /usr/bin/../share/diskimage-builder/elements/cache-url/bin
++ _DIR=bin
++ test -d /vz/vm-images/image.8cvG9kEJ/hooks/bin
+++ ls /usr/bin/../share/diskimage-builder/elements/cache-url/bin
++ for _HOOK in '$(ls $1)'
++ '[' '!' -f /vz/vm-images/image.8cvG9kEJ/hooks/bin/cache-url ']'
++ cp -t /vz/vm-images/image.8cvG9kEJ/hooks/bin -a /usr/bin/../share/diskimage-builder/elements/cache-url/bin/cache-url
+++ find /usr/bin/../share/diskimage-builder/elements/cache-url -maxdepth 1 -type f
++ for _FILE in '$(find $dir/$_ELEMENT -maxdepth 1 -type f)'
++ cp -t /vz/vm-images/image.8cvG9kEJ/hooks -a /usr/bin/../share/diskimage-builder/elements/cache-url/__init__.py
++ for _FILE in '$(find $dir/$_ELEMENT -maxdepth 1 -type f)'
++ cp -t /vz/vm-images/image.8cvG9kEJ/hooks -a /usr/bin/../share/diskimage-builder/elements/cache-url/README.md
++ break
++ for _ELEMENT in '$IMAGE_ELEMENT'
++ for dir in '${ELEMENTS_PATH//:/ }'
++ '[' -d /usr/bin/../share/diskimage-builder/elements/yum ']'
+++ find /usr/bin/../share/diskimage-builder/elements/yum -mindepth 1 -maxdepth 1 -type d -not -name tests
++ for _DIR in '$(find $dir/$_ELEMENT -mindepth 1 -maxdepth 1 -type d -not -name tests)'
++ copy_hooks_not_overwrite /usr/bin/../share/diskimage-builder/elements/yum/bin
+++ basename /usr/bin/../share/diskimage-builder/elements/yum/bin
++ _DIR=bin
++ test -d /vz/vm-images/image.8cvG9kEJ/hooks/bin
+++ ls /usr/bin/../share/diskimage-builder/elements/yum/bin
++ for _HOOK in '$(ls $1)'
++ '[' '!' -f /vz/vm-images/image.8cvG9kEJ/hooks/bin/install-packages ']'
++ cp -t /vz/vm-images/image.8cvG9kEJ/hooks/bin -a /usr/bin/../share/diskimage-builder/elements/yum/bin/install-packages
++ for _DIR in '$(find $dir/$_ELEMENT -mindepth 1 -maxdepth 1 -type d -not -name tests)'
++ copy_hooks_not_overwrite /usr/bin/../share/diskimage-builder/elements/yum/root.d
+++ basename /usr/bin/../share/diskimage-builder/elements/yum/root.d
++ _DIR=root.d
++ test -d /vz/vm-images/image.8cvG9kEJ/hooks/root.d
+++ ls /usr/bin/../share/diskimage-builder/elements/yum/root.d
++ for _HOOK in '$(ls $1)'
++ '[' '!' -f /vz/vm-images/image.8cvG9kEJ/hooks/root.d/50-yum-cache ']'
++ cp -t /vz/vm-images/image.8cvG9kEJ/hooks/root.d -a /usr/bin/../share/diskimage-builder/elements/yum/root.d/50-yum-cache
++ for _DIR in '$(find $dir/$_ELEMENT -mindepth 1 -maxdepth 1 -type d -not -name tests)'
++ copy_hooks_not_overwrite /usr/bin/../share/diskimage-builder/elements/yum/pre-install.d
+++ basename /usr/bin/../share/diskimage-builder/elements/yum/pre-install.d
++ _DIR=pre-install.d
++ test -d /vz/vm-images/image.8cvG9kEJ/hooks/pre-install.d
+++ ls /usr/bin/../share/diskimage-builder/elements/yum/pre-install.d
++ for _HOOK in '$(ls $1)'
++ '[' '!' -f /vz/vm-images/image.8cvG9kEJ/hooks/pre-install.d/01-yum-install-bin ']'
++ cp -t /vz/vm-images/image.8cvG9kEJ/hooks/pre-install.d -a /usr/bin/../share/diskimage-builder/elements/yum/pre-install.d/01-yum-install-bin
++ for _HOOK in '$(ls $1)'
++ '[' '!' -f /vz/vm-images/image.8cvG9kEJ/hooks/pre-install.d/01-yum-keepcache ']'
++ cp -t /vz/vm-images/image.8cvG9kEJ/hooks/pre-install.d -a /usr/bin/../share/diskimage-builder/elements/yum/pre-install.d/01-yum-keepcache
++ for _DIR in '$(find $dir/$_ELEMENT -mindepth 1 -maxdepth 1 -type d -not -name tests)'
++ copy_hooks_not_overwrite /usr/bin/../share/diskimage-builder/elements/yum/post-install.d
+++ basename /usr/bin/../share/diskimage-builder/elements/yum/post-install.d
++ _DIR=post-install.d
++ test -d /vz/vm-images/image.8cvG9kEJ/hooks/post-install.d
+++ ls /usr/bin/../share/diskimage-builder/elements/yum/post-install.d
++ for _HOOK in '$(ls $1)'
++ '[' '!' -f /vz/vm-images/image.8cvG9kEJ/hooks/post-install.d/99-reset-yum-conf ']'
++ cp -t /vz/vm-images/image.8cvG9kEJ/hooks/post-install.d -a /usr/bin/../share/diskimage-builder/elements/yum/post-install.d/99-reset-yum-conf
+++ find /usr/bin/../share/diskimage-builder/elements/yum -maxdepth 1 -type f
++ for _FILE in '$(find $dir/$_ELEMENT -maxdepth 1 -type f)'
++ cp -t /vz/vm-images/image.8cvG9kEJ/hooks -a /usr/bin/../share/diskimage-builder/elements/yum/README.md
++ break
++ check_break before-root bash
++ echo ''
++ egrep -e '(,|^)before-root(,|$)' -q
++ '[' -d /vz/vm-images/image.8cvG9kEJ/hooks/root.d ']'
++ dib-run-parts /vz/vm-images/image.8cvG9kEJ/hooks/root.d
+/vz/vm-images/image.8cvG9kEJ/hooks/root.d/../environment.d/10-dib-init-system.bash: line 1: /vz/vm-images/image.8cvG9kEJ/hooks/root.d/../environment.d/../dib-init-system: Permission denied
+----------------------- PROFILING -----------------------
+
+Target: root.d
+
+Script                                     Seconds
+---------------------------------------  ----------
+
+
+--------------------- END PROFILING ---------------------
++ check_break after-root bash
++ echo ''
++ egrep -e '(,|^)after-root(,|$)' -q
+++ ls /vz/vm-images/image.8cvG9kEJ/mnt
+++ grep -v '^lost+found\|tmp$'
++ '[' -z '' ']'
++ echo 'Failed to deploy the root element.'
+Failed to deploy the root element.
++ exit 1
++ trap_cleanup
++ exitval=1
++ cleanup
++ unmount_image
++ sync
++ unmount_dir /vz/vm-images/image.8cvG9kEJ/mnt
++ local pattern=/vz/vm-images/image.8cvG9kEJ/mnt mnts=
++ '[' -n /vz/vm-images/image.8cvG9kEJ/mnt ']'
+++ awk '{print $2}'
+++ grep '^/vz/vm-images/image.8cvG9kEJ/mnt'
+++ sort -r
++ mnts=
++ '[' -n '' ']'
++ '[' -n '' ']'
++ cleanup_dirs
++ sudo rm -rf /vz/vm-images/image.8cvG9kEJ/built
++ sudo rm -rf /vz/vm-images/image.8cvG9kEJ/mnt
++ sudo umount -f /vz/vm-images/image.8cvG9kEJ /vz/vm-images/image.4iVYYIXo
+umount2: Invalid argument
+umount: /vz/vm-images/image.8cvG9kEJ: not mounted
+umount2: Invalid argument
+umount: /vz/vm-images/image.4iVYYIXo: not mounted
++ true
++ rm -rf /vz/vm-images/image.8cvG9kEJ /vz/vm-images/image.4iVYYIXo
++ exit 1

@@ -1,0 +1,40 @@
+#!/bin/bash
+
+# Intended to be called from the root.d cloud-image script as follows:
+# $TMP_HOOKS_PATH/bin/extract-image $BASE_IMAGE_FILE $BASE_IMAGE_TAR $IMAGE_LOCATION $CACHED_IMAGE
+
+set -eux
+set -o pipefail
+
+BASE_IMAGE_FILE=$1
+BASE_IMAGE_TAR=$2
+IMAGE_LOCATION=$3
+CACHED_IMAGE=$4
+
+CACHED_TAR=$DIB_IMAGE_CACHE/$BASE_IMAGE_TAR
+DIB_LOCAL_IMAGE=${DIB_LOCAL_IMAGE:-""}
+TAR_LOCK=$CACHED_TAR.lock
+
+function extract_image() {
+    if [ -n "$DIB_OFFLINE" -a -f "$CACHED_TAR" ] ; then
+        echo "Not checking freshness of cached $CACHED_TAR."
+    else
+        if [ -z "$DIB_LOCAL_IMAGE" ]; then
+            echo "Fetching Base Image"
+            cp /vz/vm-images/$BASE_IMAGE_FILE $DIB_IMAGE_CACHE
+        fi
+
+   fi
+
+    sudo guestfish --ro -a $CACHED_IMAGE -m /dev/sda1 copy-out / $TARGET_ROOT
+}
+
+(
+    echo "Getting $TAR_LOCK: $(date)"
+    # Wait up to 20 minutes for another process to download
+    if ! flock -w 1200 9 ; then
+        echo "Did not get $TAR_LOCK: $(date)"
+        exit 1
+    fi
+    extract_image
+) 9> $TAR_LOCK
